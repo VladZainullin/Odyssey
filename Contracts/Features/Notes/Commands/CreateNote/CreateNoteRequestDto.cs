@@ -5,4 +5,6 @@ public readonly struct CreateNoteRequestDto
     public required string Header { get; init; }
 
     public required string Body { get; init; }
+
+    public required List<Guid> LabelIds { get; init; }
 }
