@@ -1,4 +1,4 @@
-namespace Contracts.Features.Users.Commands.GetUserToken;
+namespace Contracts.Features.Users.Queries.GetUserToken;
 
 public readonly struct GetUserTokenRequestDto
 {

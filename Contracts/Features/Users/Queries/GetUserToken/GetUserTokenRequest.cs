@@ -1,5 +1,5 @@
 using MediatR;
 
-namespace Contracts.Features.Users.Commands.GetUserToken;
+namespace Contracts.Features.Users.Queries.GetUserToken;
 
 public sealed record GetUserTokenRequest(GetUserTokenRequestDto Dto) : IRequest<GetUserTokenResponseDto>;
