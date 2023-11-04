@@ -2,15 +2,15 @@ namespace Domain.Entities;
 
 public sealed class User
 {
-    public User(Guid id, string email, string passwordHash)
+    public User(string username, string passwordHash)
     {
-        Email = email;
+        Username = username;
         PasswordHash = passwordHash;
     }
-    
-    public Guid Id { get; set; }
 
-    public string Email { get; set; }
+    public Guid Id { get; private init; } = Guid.NewGuid();
 
-    public string PasswordHash { get; set; }
+    public string Username { get; private set; }
+
+    public string PasswordHash { get; private set; }
 }
