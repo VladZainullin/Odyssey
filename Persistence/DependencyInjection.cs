@@ -2,7 +2,6 @@ using Contracts.Persistence;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Persistence.Repositories;
 
 namespace Persistence;
 
@@ -16,7 +15,9 @@ public static class DependencyInjection
             options.UseSnakeCaseNamingConvention();
         });
 
-        services.AddScoped<IRepository<User>, UserRepository>();
+        services.AddScoped<DbContext, AppDbContext>();
+
+        services.AddScoped<IRepository<User>, Repository<User>>();
         
         return services;
     }
