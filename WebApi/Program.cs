@@ -1,8 +1,15 @@
+using Application;
+using Identification;
+using Persistence;
 using WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddWebApiServices();
+builder.Services
+    .AddPersistenceServices()
+    .AddIdentificationServicesService()
+    .AddApplicationServices()
+    .AddWebApiServices();
 
 var app = builder.Build();
 
