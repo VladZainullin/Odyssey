@@ -1,6 +1,8 @@
 namespace Contracts.Persistence;
 
-public interface IRepository<out TEntity> : IQueryable<TEntity>
+public interface IRepository<TEntity> : IQueryable<TEntity>
 {
-    
+    Task AddAsync(TEntity entity, CancellationToken token);
+
+    void Delete(TEntity entity);
 }
