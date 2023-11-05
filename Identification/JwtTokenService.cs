@@ -22,7 +22,7 @@ public sealed class JwtTokenService : IJwtTokenService
     public string GetToken(User user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.UTF8.GetBytes(_identificationOptions.Value.Key);
+        var key = Encoding.ASCII.GetBytes(_identificationOptions.Value.Secret);
         
         var claims = new Claim[]
         {
@@ -32,9 +32,7 @@ public sealed class JwtTokenService : IJwtTokenService
         var tokenDescription = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
-            Expires = DateTimeOffset.Now.AddMinutes(5).DateTime,
-            Issuer = _identificationOptions.Value.Issuer,
-            Audience = _identificationOptions.Value.Audience,
+            Expires = DateTimeOffset.Now.Add(_identificationOptions.Value.TokenLifetime).DateTime,
             SigningCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(key), 
                 SecurityAlgorithms.HmacSha256)

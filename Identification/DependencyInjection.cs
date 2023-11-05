@@ -16,6 +16,17 @@ public static class DependencyInjection
     {
         services.AddOptions<IdentificationOptions>().BindConfiguration("Identification");
         
+        var tokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.ASCII.GetBytes(configuration["Identification:Secret"]!)),
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            RequireExpirationTime = false,
+            ValidateLifetime = true,
+        };
+        
         services
             .AddAuthentication(x =>
             {
@@ -25,17 +36,8 @@ public static class DependencyInjection
             })
             .AddJwtBearer(x =>
             {
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidIssuer = "Issuer",
-                    ValidAudience = "Dart",
-                    IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(configuration["Identification:Key"]!)),
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                };
+                x.SaveToken = true;
+                x.TokenValidationParameters = tokenValidationParameters;
             });
 
         services.AddTransient<IJwtTokenService, JwtTokenService>();
