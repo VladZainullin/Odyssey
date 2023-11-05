@@ -37,7 +37,7 @@ public sealed class JwtTokenService : IJwtTokenService
             Audience = _identificationOptions.Value.Audience,
             SigningCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(key), 
-                SecurityAlgorithms.Sha256)
+                SecurityAlgorithms.HmacSha256)
         };
 
         var token = tokenHandler.CreateToken(tokenDescription);
