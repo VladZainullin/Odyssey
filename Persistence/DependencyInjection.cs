@@ -1,5 +1,4 @@
 using Contracts.Persistence;
-using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,13 +10,13 @@ public static class DependencyInjection
     {
         services.AddDbContextPool<AppDbContext>(options =>
         {
-            options.UseInMemoryDatabase("AppDatabase");
+            options.UseSqlite("AppDatabase");
             options.UseSnakeCaseNamingConvention();
         });
 
         services.AddScoped<DbContext, AppDbContext>();
 
-        services.AddScoped<IRepository<User>, Repository<User>>();
+        services.AddScoped<IAppDbContext, AppDbContextAdapter>();
         
         return services;
     }

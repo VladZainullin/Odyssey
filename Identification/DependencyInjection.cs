@@ -1,4 +1,5 @@
 using System.Text;
+using Contracts.Identification;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -29,6 +30,8 @@ public static class DependencyInjection
                     ValidateIssuerSigningKey = true
                 };
             });
+
+        services.AddTransient<IJwtTokenService, JwtTokenService>();
 
         return services;
     }
