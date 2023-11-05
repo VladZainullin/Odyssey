@@ -1,3 +1,5 @@
+using LinqSpecs;
+
 namespace Domain.Entities;
 
 public sealed class User
@@ -20,4 +22,12 @@ public sealed class User
     public string Username { get; private set; }
 
     public string PasswordHash { get; private set; }
+    
+    public static class Spec
+    {
+        public static Specification<User> ByUsername(string username)
+        {
+            return new AdHocSpecification<User>(u => u.Username == username);
+        }
+    }
 }
