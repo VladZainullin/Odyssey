@@ -7,6 +7,8 @@ public sealed class Label
         Title = title;
         User = user;
     }
+
+    public Guid Id { get; private init; } = Guid.NewGuid();
     
     public string Title { get; private set; }
     
