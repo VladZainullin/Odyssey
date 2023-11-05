@@ -10,7 +10,7 @@ public static class DependencyInjection
     {
         services.AddDbContextPool<AppDbContext>(options =>
         {
-            options.UseSqlite("AppDatabase");
+            options.UseSqlite("Filename=App.db");
             options.UseSnakeCaseNamingConvention();
         });
 
