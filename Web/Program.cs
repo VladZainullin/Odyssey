@@ -1,7 +1,7 @@
 using Application;
 using Identification;
 using Persistence;
-using WebApi;
+using Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
