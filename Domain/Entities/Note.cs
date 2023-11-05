@@ -2,7 +2,14 @@ namespace Domain.Entities;
 
 public sealed class Note
 {
-    public Note(string header, string body, User user)
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    private Note()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    {
+        
+    }
+    
+    public Note(string header, string body, User user) : this()
     {
         Header = header;
         Body = body;
