@@ -9,7 +9,7 @@ public static class DependencyInjection
     {
         services.AddMediatR(c =>
         {
-            c.RegisterServicesFromAssembly(Assembly.GetCallingAssembly());
+            c.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
         });
         
         return services;
