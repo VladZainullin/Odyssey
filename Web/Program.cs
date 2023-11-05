@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddPersistenceServices()
-    .AddIdentificationServicesService()
+    .AddIdentificationServicesService(builder.Configuration)
     .AddApplicationServices()
     .AddWebApiServices();
 
